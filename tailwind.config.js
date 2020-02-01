@@ -1,10 +1,8 @@
 const selectorParser = require("postcss-selector-parser");
-const hexToRgb = require("hex-to-rgb");
 
 const breakpoints = require("./tailwind/breakpoints");
 const spacing = require("./tailwind/spacing");
 const fontSize = require("./tailwind/font-size");
-const colors = require("./tailwind/colors");
 
 const screens = Object.assign(
   {},
@@ -30,7 +28,12 @@ module.exports = {
       widest: "3px"
     },
     extend: {
-      colors,
+      colors: {
+        background: "var(--color-background)",
+        primary: "var(--color-primary)",
+        card: "var(--color-card)",
+        secondary: "var(--color-secondary)",
+      },
       opacity: {
         important: "1 !important"
       }
@@ -72,15 +75,13 @@ module.exports = {
         ".shift-y-16": {
           transform: `translateY(${spacing["16"]})`
         },
-        ".gradient-y-transparent-night": {
-          background: `linear-gradient(to bottom, rgba(${hexToRgb(
-            colors.night
-          ).join(", ")}, 0), ${colors.night})`
+        ".gradient-y-background-to-transparent": {
+          background:
+            "linear-gradient(to bottom, var(--color-background), rgba(var(--color-background-rgb), 0))"
         },
-        ".gradient-y-night-transparent": {
-          background: `linear-gradient(to top, rgba(${hexToRgb(
-            colors.night
-          ).join(", ")}, 0), ${colors.night})`
+        ".gradient-y-transparent-to-background": {
+          background:
+            "linear-gradient(to top, var(--color-background), rgba(var(--color-background-rgb), 0))"
         }
       };
 
@@ -91,7 +92,7 @@ module.exports = {
         "group-2-hover"
       ]);
     },
-    function({ addVariant, e }) {
+    function({ addVariant }) {
       addVariant("group-2-hover", ({ modifySelectors, separator }) => {
         return modifySelectors(({ selector }) => {
           return selectorParser(selectors => {

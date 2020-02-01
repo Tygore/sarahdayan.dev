@@ -7,7 +7,7 @@
       rel="noopener"
     >
       <div
-        class="flex items-center justify-center flex-none mr-24 rounded-full md:mr-40 w-80 h-80 md:w-120 md:h-120 bg-dusk text-zenith group-2-hover:scale-11/10x transition"
+        class="flex items-center justify-center flex-none mr-24 rounded-full md:mr-40 w-80 h-80 md:w-120 md:h-120 bg-card text-primary group-2-hover:scale-11/10x transition"
       >
         <component
           :is="getIcon(interview.type)"
@@ -18,7 +18,7 @@
       </div>
       <div>
         <h2
-          class="text-lg font-semibold leading-snug md:leading-tight text-zenith"
+          class="text-lg font-semibold leading-snug md:leading-tight text-primary"
           itemprop="name"
         >
           {{ interview.title }}
@@ -30,7 +30,7 @@
           </span>
         </p>
         <time
-          class="inline-block mt-8 text-xs font-bold tracking-widest uppercase text-zenith"
+          class="inline-block mt-8 text-xs font-bold tracking-widest uppercase text-primary"
           itemprop="datePublished"
           :datetime="interview.time"
           :content="interview.time"
